@@ -13,6 +13,9 @@ jobs:
     name: Build Image
     runs-on: ubuntu-latest
     steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -30,3 +33,5 @@ jobs:
           tags: ghcr.io/auto-kube/wordsmith-web:01
           cache-from: type=gha
           cache-to: type=gha,mode=maxc
+          platforms: linux/amd64,linux/arm64
+
